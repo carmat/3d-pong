@@ -1,49 +1,27 @@
 class Walker {
-	int x;
-	int y;
-	walker w;
+  float x, y;
 
-	walker() {
-		// origin center ( O )
-		x = width/2;
-		y = height/2;
-	}
+  Walker() {
+    x = width/2;
+    y = height/2;
+  }
 
-	void display() {
-		// show object
-		stroke(0);
-		point(x,y);
-	}
+  void render() {
+    stroke(0);
+    fill(175);
+    rectMode(CENTER);
+    rect(x, y, 40, 40);
+  }
 
-	void step() {
-		// choose a random floating number ( 0, 1, 2 or 3 )
-		int choice = int(random(4));
+  // Randomly move up, down, left, right, or stay in one place
+  void walk() {
+    float vx = random(-2, 2);
+    float vy = random(-2, 2);
+    x += vx;
+    y += vy;
 
-		// assign direction
-		if (choice == 0) {
-			// up
-			x++;
-		} else if (choice == 1) {
-			// down
-			x--;
-		} else if (choice == 2) {
-			// right
-			y++;
-		} else {
-			// left
-			y--;
-		}
-	}
-
-	void setup() {
-		// create the walker
-		size(640,320);
-		w = new walker();
-		background(255);
-	}
-
-	void draw() {
-		// call on walke
-		w.step();
-		w.display();
+    // Stay on the screen
+    x = constrain(x, 0, width-1);
+    y = constrain(y, 0, height-1);
+  }
 }

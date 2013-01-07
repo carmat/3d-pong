@@ -3,22 +3,26 @@
 <title>3D Pong - Stage 01</title>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <script type="text/javascript" src="js/processing-1.4.1.min.js"></script>
-<script type="text/javascript" src="js/init.js"></script>
+<!--script type="text/javascript" src="js/init.js"></script-->
 </head>
 
 <body>
 	<script type="application/processing">
+	Walker w;
+
 	void setup() {
-		// create the walker
-		size(80,80);
-		w = new walker();
-		background(255);
+	  size(400,400);
+	  frameRate(30);
+
+	  // Create a walker object
+	  w = new Walker();
 	}
 
 	void draw() {
-		// call on walker
-		w.step();
-		w.display();
+	  background(255);
+	  // Run the walker object
+	  w.walk();
+	  w.render();
 	}
 	</script>
 	
